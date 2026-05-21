@@ -82,3 +82,24 @@ docker exec -i willmantech_db \
 ### 3. Volver a arrancar
 docker compose start web
 
+## 5. Flujo Operativo de Facturación e Informes
+
+### Crear una factura
+1. Ir a Facturación - Clientes - Facturas - Nuevo.
+2. Seleccionar el cliente y la fecha.
+3. Añadir las líneas de producto (concepto, cantidad, precio, IVA).
+4. Pulsar Confirmar — el sistema asigna el número de factura definitivo.
+5. Pulsar Enviar e imprimir para enviarla al cliente por email con el PDF adjunto.
+
+### Cómo se genera el PDF
+
+Cuando se pulsa "Imprimir", el sistema sigue tres pasos internos:
+
+Plantilla QWeb (XML) - HTML - PDF
+
+1. La plantilla XML define la estructura visual de la factura.
+2. El motor QWeb rellena los datos reales del cliente y las líneas de detalle.
+3. La herramienta `wkhtmltopdf` convierte ese HTML en el PDF descargable.
+
+### Exportar para la Agencia Tributaria
+Desde la factura confirmada: Exportar como UBL XML. Genera un fichero estándar compatible con plataformas de factura electrónica y sistemas contables externos.
