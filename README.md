@@ -71,14 +71,14 @@ Este comando genera un fichero .dump comprimido con toda la base de datos.
 ### Restaurar una copia
 bash
 
-# 1. Parar el servidor ERP
+### 1. Parar el servidor ERP
 docker compose stop web
 
-# 2. Restaurar el fichero de backup
+### 2. Restaurar el fichero de backup
 docker exec -i willmantech_db \
   pg_restore --username=odoo --dbname=willmantech_prod \
   < ./backups/backup_YYYYMMDD.dump
 
-# 3. Volver a arrancar
+### 3. Volver a arrancar
 docker compose start web
 
