@@ -42,3 +42,19 @@ bash
 docker compose down -v   (Elimina contenedores y volúmenes)
 docker compose up -d     (Vuelve a crear todo desde cero)
 
+## 3. Seguridad y Control de Acceso
+
+El sistema define tres perfiles de usuario:
+
+Administrador - Acceso total: configuración, usuarios y módulos.
+Contable - Gestión de facturas, pagos e informes financieros.
+Comercial - Gestión de clientes, presupuestos y pedidos de venta.
+
+### Crear un usuario
+Ajustes - Usuarios - Nuevo - rellenar nombre, email y asignar el rol.
+
+### Recomendaciones de seguridad
+- Usar contraseñas de al menos 12 caracteres con mayúsculas, números y símbolos.
+- Activar la verificación en dos pasos para administradores desde Ajustes → Autenticación de dos factores.
+- No exponer el puerto de la base de datos (5432) fuera del servidor.
+
