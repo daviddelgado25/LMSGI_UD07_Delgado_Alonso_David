@@ -58,3 +58,27 @@ Ajustes - Usuarios - Nuevo - rellenar nombre, email y asignar el rol.
 - Activar la verificación en dos pasos para administradores desde Ajustes → Autenticación de dos factores.
 - No exponer el puerto de la base de datos (5432) fuera del servidor.
 
+## 4. Procedimiento de Backup y Restauración
+
+### Hacer una copia de seguridad
+bash
+docker exec willmantech_db \
+  pg_dump --username=odoo --format=custom --compress=9 willmantech_prod \
+  > ./backups/backup_$(date +%Y%m%d).dump
+
+Este comando genera un fichero .dump comprimido con toda la base de datos.
+
+### Restaurar una copia
+bash
+
+# 1. Parar el servidor ERP
+docker compose stop web
+
+# 2. Restaurar el fichero de backup
+docker exec -i willmantech_db \
+  pg_restore --username=odoo --dbname=willmantech_prod \
+  < ./backups/backup_YYYYMMDD.dump
+
+# 3. Volver a arrancar
+docker compose start web
+
